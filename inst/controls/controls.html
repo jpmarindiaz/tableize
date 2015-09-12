@@ -1,0 +1,28 @@
+<div style="width: 100%; display: table;">
+    <div style="display: table-row">
+        <div style="display: table-cell;">
+            <h3>{{{selectRowsText}}}</h3>
+            <select id="select-rows" name="state[]" multiple class="controls" style="width:100%" placeholder="Select a row...">
+                <option value="">...</option>
+                <!-- <option value="row0" selected hidden>Row0</option> -->
+                <!-- <option value="row1" selected>Row1</option> -->
+                <!-- <option value="row2" selected>Row2</option> -->
+                <!-- <option value="row3">Row 3</option> -->
+                {{#rowOptions}}
+                  {{{optionHtml}}}
+                {{/rowOptions}}
+            </select>
+        </div>
+        <div style="width: 50%; display: table-cell;">
+            <h3>{{{selectColsText}}}</h3>
+            <select id="select-columns" name="state[]" multiple class="controls" style="width:100%" placeholder="Select a column...">
+                <option value="">...</option>
+                <!-- <option value="firstName" selected>First Name</option> -->
+                <!-- <option value="lastName" selected>Last Name</option> -->
+                {{#colOptions}}
+                  {{{optionHtml}}}
+                {{/colOptions}}
+            </select>
+        </div>
+    </div>
+</div>

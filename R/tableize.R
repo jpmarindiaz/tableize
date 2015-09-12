@@ -5,11 +5,33 @@
 #' @import htmlwidgets
 #'
 #' @export
-tableize <- function(message, width = NULL, height = NULL) {
+tableize <- function(d, fixedCols = NULL, rowLabelCol =  NULL,fixedRows = NULL,
+                     header = NULL, style = "table0",
+                     width = NULL, height = NULL) {
+
+  fixedCols <- fixedCols %||% names(d)[1]
+  rowLabelCol <- rowLabelCol %||% names(d)[1]
+  if(!rowLabelCol %in% names(d))
+    stop('rowLabelCol must be in names(d)')
+  if(!all(fixedRows %in% d[,rowLabelCol]))
+    stop("fixedRow not in selected column to filter")
+  fixedRows <- fixedRows
+  header <- header %||% names(d)
+  if(length(header) != length(names(d)))
+    stop('header must have the same length as names(d)')
+
+  controls <- getControls(d,fixedCols,rowLabelCol, fixedRows)
+  style <- getStyle(style)
+
+  table <-prepareTable(d,fixedCols = fixedCols,
+                       rowLabelCol = rowLabelCol, fixedRows = fixedRows,
+                       header = header)
 
   # forward options using x
   x = list(
-    message = message
+    table = table,
+    style = style,
+    controls = controls
   )
 
   # create widget
@@ -18,6 +40,9 @@ tableize <- function(message, width = NULL, height = NULL) {
     x,
     width = width,
     height = height,
+    sizingPolicy = htmlwidgets::sizingPolicy(
+      browser.fill = TRUE
+    ),
     package = 'tableize'
   )
 }

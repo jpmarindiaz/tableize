@@ -69,7 +69,8 @@ div#two {
                 <!-- <label for="select-rows">States:</label> -->
                 <select id="select-rows" name="state[]" multiple class="controls" style="width:100%" placeholder="Select a row...">
                     <option value="">Select a row...</option>
-                    <!-- <option value="row0" selected hidden>Row0</option> -->
+                    <!-- <option value="header" selected>Header</option> -->
+                    <option value="row0" selected>Row0</option>
                     <option value="row1" selected>Row1</option>
                     <option value="row2" selected>Row2</option>
                     <option value="row3">Row 3</option>
@@ -92,8 +93,8 @@ div#two {
         plugins: ['remove_button']
     })
     var $selectRow = $('#select-rows').selectize({
-        maxItems: 10,
-        plugins: ['remove_button']
+            maxItems: 10,
+            plugins: ['remove_button']
         })
         // $selectRow.selectize.addOption({value: "row0", label: 'whatever'});
 
@@ -101,10 +102,15 @@ div#two {
         fixedCols: ["number"],
         fixedRows: ["row0"],
         data: [{
+            rowId: "table_header",
+            number: "Edad",
+            firstName: "Nombre",
+            lastName: "Apellido"
+        },{
             rowId: "row0",
-            number: "<strong>Number</strong>",
-            firstName: "<strong>First Name</strong>",
-            lastName: "<strong>Last Name</strong>"
+            number: 32,
+            firstName: "Juan",
+            lastName: "Pérez"
         }, {
             rowId: "row1",
             number: 1,
@@ -119,11 +125,11 @@ div#two {
             rowId: "row3",
             number: 3,
             firstName: "Jose",
-            lastName: "Marin"
+            lastName: "Marín"
         }]
     };
 
-    var fixedRows = table.fixedRows;
+    var fixedRows = ["table_header"].concat(table.fixedRows);
     var fixedCols = table.fixedCols;
 
     // FILTER ROWS COLS
@@ -162,14 +168,26 @@ div#two {
 
     // http://jsfiddle.net/mjaric/sewm6/
     function drawTable(data) {
-        for (var i = 0; i < data.length; i++) {
+        // Draw header
+        var row = $("<tr />")
+        $("#renderTable").append(row);
+        var header = data[0];
+        var nProps = countProperties(header);
+        var keys = Object.keys(header);
+        for (var i = 0; i < nProps; i++) {
+            if (keys[i] != "rowId") {
+                row.append($("<th>" + header[keys[i]] + "</th>"));
+            }
+        }
+        // Draw rows
+        for (var i = 1; i < data.length; i++) {
             drawRow(data[i]);
         }
     }
 
     function drawRow(rowData) {
         var row = $("<tr />")
-        $("#personDataTable").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
+        $("#renderTable").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
         var nProps = countProperties(rowData);
         var keys = Object.keys(rowData);
         for (var i = 0; i < nProps; i++) {
@@ -209,7 +227,7 @@ div#two {
         rows = rows.concat(fixedRows);
         cols = cols.concat(fixedCols);
         console.log(rows)
-        $("#personDataTable").find("tr").remove();
+        $("#renderTable").find("tr").remove();
         updateTable(data, rows, cols);
 
     });
@@ -226,6 +244,7 @@ div#two {
     </script>
 </div>
 <div>
-    <table id="personDataTable">
+    <table id="renderTable">
+
     </table>
 </div>
