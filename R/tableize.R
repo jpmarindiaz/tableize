@@ -7,6 +7,8 @@
 #' @export
 tableize <- function(d, fixedCols = NULL, rowLabelCol =  NULL,fixedRows = NULL,
                      header = NULL, style = "table0",
+                     placeholderRow = NULL, placeholderCol = NULL,
+                     selectedRows = NULL, selectedCols = NULL,
                      width = NULL, height = NULL) {
 
   fixedCols <- fixedCols %||% names(d)[1]
@@ -20,18 +22,24 @@ tableize <- function(d, fixedCols = NULL, rowLabelCol =  NULL,fixedRows = NULL,
   if(length(header) != length(names(d)))
     stop('header must have the same length as names(d)')
 
-  controls <- getControls(d,fixedCols,rowLabelCol, fixedRows)
+  controls <- getControls(d,fixedCols,rowLabelCol, fixedRows,
+                          selectedRows = selectedRows, selectedCols = selectedCols)
   style <- getStyle(style)
 
   table <-prepareTable(d,fixedCols = fixedCols,
                        rowLabelCol = rowLabelCol, fixedRows = fixedRows,
                        header = header)
 
+  placeholderRow <- placeholderRow %||% "..."
+  placeholderCol <- placeholderCol %||% "..."
+
   # forward options using x
   x = list(
     table = table,
     style = style,
-    controls = controls
+    controls = controls,
+    placeholderRow = placeholderRow,
+    placeholderCol = placeholderCol
   )
 
   # create widget

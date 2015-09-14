@@ -24,7 +24,8 @@ getStyle <- function(name = "table1"){
 
 
 getControls <- function(d,fixedCols,rowLabelCol,fixedRows,
-                        selectRowsText = NULL, selectColsText = NULL){
+                        selectRowsText = NULL, selectColsText = NULL,
+                        selectedRows = NULL, selectedCols = NULL){
 
   controlTpl <- "controls"
   name <- paste0(controlTpl,".html")
@@ -35,17 +36,29 @@ getControls <- function(d,fixedCols,rowLabelCol,fixedRows,
   selectColsText = selectColsText %||% 'Seleccione columnas'
 
 
-  optionColTpl <- '<option value="{{colName}}" selected>{{colName}}</option>'
+  optionColTpl <- '<option value="{{colName}}" {{selected}}>{{colName}}</option>'
   filterCols <- names(d)[which(!names(d) %in% fixedCols)]
-  colOptions <- lapply(filterCols,function(col){
-    list(optionHtml = whisker.render(optionColTpl,list(colName = col)))
+  selectedCols <- selectedCols %||% filterCols
+  lcol <- lapply(filterCols,function(col){
+    selected <- ""
+    if(col %in% selectedCols) selected <- "selected"
+    list(colName = col,selected = selected)
+  })
+  colOptions <- lapply(lcol,function(col){
+    list(optionHtml = whisker.render(optionColTpl,col))
   })
 
-  optionRowTpl <- '<option value="{{rowName}}" selected>{{rowName}}</option>'
+  optionRowTpl <- '<option value="{{rowName}}" {{selected}}>{{rowName}}</option>'
   filterRows <-  d[,rowLabelCol]
   filterRows <- filterRows[!filterRows %in% fixedRows]
-  rowOptions <- lapply(filterRows,function(row){
-    list(optionHtml = whisker.render(optionRowTpl,list(rowName = row)))
+  selectedRows <- selectedRows %||% filterRows
+  lrow <- lapply(filterRows,function(row){
+    selected <- ""
+    if(row %in% selectedRows) selected <- "selected"
+    list(rowName = row,selected = selected)
+  })
+  rowOptions <- lapply(lrow,function(row){
+    list(optionHtml = whisker.render(optionRowTpl,row))
   })
 
 #   options = list(

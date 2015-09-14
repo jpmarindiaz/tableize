@@ -76,15 +76,22 @@ HTMLWidgets.widget({
         x.table.data = HTMLWidgets.dataframeToD3(x.table.data);
         console.log(x.table)
 
+        var selRowOpts = {
+            maxItems: 10,
+            placeholder: '...',
+            plugins: ['remove_button']
+        };
+        var selColOpts = {
+            maxItems: 10,
+            placeholder: '...',
+            plugins: ['remove_button']
+        };
+        selRowOpts.placeholder = x.placeholderRow;
+        selColOpts.placeholder = x.placeholderCol;
 
-        var $selectColumn = $('#select-columns').selectize({
-            maxItems: 10,
-            plugins: ['remove_button']
-        })
-        var $selectRow = $('#select-rows').selectize({
-            maxItems: 10,
-            plugins: ['remove_button']
-        })
+        var $selectColumn = $('#select-columns').selectize(selColOpts)
+        var $selectRow = $('#select-rows').selectize(selRowOpts)
+
 
         var fixedRows = ["table_header"].concat(table.fixedRows);
         var fixedCols = table.fixedCols;
