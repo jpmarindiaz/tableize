@@ -16,10 +16,15 @@ prepareTable <- function(d, fixedCols,
 }
 
 
-getStyle <- function(name = "table1"){
-  name <- paste0(name,".css")
-  filePath <- file.path(system.file("styles",package="tableize"),name)
-  paste0(readLines(filePath),collapse="")
+getStyle <- function(theme = "basic", customCSS = ""){
+  if(theme == "blank")
+    theme <- ""
+  else{
+    theme <- paste0(theme,".css")
+    filePath <- file.path(system.file("styles",package="tableize"),theme)
+    theme <- paste0(readLines(filePath),collapse="")
+  }
+  paste0(theme,customCSS)
 }
 
 
@@ -61,9 +66,9 @@ getControls <- function(d,fixedCols,rowLabelCol,fixedRows,
     list(optionHtml = whisker.render(optionRowTpl,row))
   })
 
-#   options = list(
-#     list(optionHtml = '<option value="lastName" selected>Replaceeeed</option>')
-#   )
+  #   options = list(
+  #     list(optionHtml = '<option value="lastName" selected>Replaceeeed</option>')
+  #   )
 
   tplData <- list(selectRowsText = selectRowsText,
                   selectColsText = selectColsText,

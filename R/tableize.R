@@ -6,7 +6,7 @@
 #'
 #' @export
 tableize <- function(d, fixedCols = NULL, rowLabelCol =  NULL,fixedRows = NULL,
-                     header = NULL, style = "table0",
+                     header = NULL, theme = "basic", customCSS = NULL,
                      placeholderRow = NULL, placeholderCol = NULL,
                      selectedRows = NULL, selectedCols = NULL,
                      width = NULL, height = NULL) {
@@ -24,7 +24,7 @@ tableize <- function(d, fixedCols = NULL, rowLabelCol =  NULL,fixedRows = NULL,
 
   controls <- getControls(d,fixedCols,rowLabelCol, fixedRows,
                           selectedRows = selectedRows, selectedCols = selectedCols)
-  style <- getStyle(style)
+  style <- getStyle(theme = theme, customCSS = customCSS)
 
   table <-prepareTable(d,fixedCols = fixedCols,
                        rowLabelCol = rowLabelCol, fixedRows = fixedRows,

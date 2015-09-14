@@ -5,9 +5,9 @@
 \title{<Add Title>}
 \usage{
 tableize(d, fixedCols = NULL, rowLabelCol = NULL, fixedRows = NULL,
-  header = NULL, style = "table0", placeholderRow = NULL,
-  placeholderCol = NULL, selectedRows = NULL, selectedCols = NULL,
-  width = NULL, height = NULL)
+  header = NULL, theme = "basic", customCSS = NULL,
+  placeholderRow = NULL, placeholderCol = NULL, selectedRows = NULL,
+  selectedCols = NULL, width = NULL, height = NULL)
 }
 \description{
 <Add Description>
