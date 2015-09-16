@@ -3,6 +3,6 @@ Title: Htmlwidget that uses selectize to filter rows and columns in table.
 Version: 0.0.1
 Authors@R: person("Juan Pablo", "Marin Diaz", email = "jpmarindiaz@gmail.com", role = c("aut", "cre"))
 Description: Htmlwidget that uses selectize to filter rows and columns in a table.
-Depends: R (>= 3.2.1), whisker
+Depends: R (>= 3.2.1), whisker, htmlwidgets
 License: MIT
 LazyData: true
