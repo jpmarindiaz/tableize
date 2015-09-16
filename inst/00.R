@@ -17,6 +17,11 @@ rowLabelCol <- "mpg"
 fixedRows <- c("Valiant","Merc 240D")
 tableize(d,fixedCols = fixedCols,rowLabelCol = rowLabelCol,fixedRows =  fixedRows)
 
+tableize(d,fixedCols = fixedCols,rowLabelCol = rowLabelCol,fixedRows =  fixedRows,
+         selectRowsText = "Filas", selectColsText = "COLs")
+
+
+tableize(d,fixedCols = fixedCols,rowLabelCol = rowLabelCol,fixedRows =  fixedRows, theme = "blank", customCSS = "#controls{background-color:#ccc}")
 
 
 
@@ -40,6 +45,8 @@ tableize(d, fixedRows = fixedRows)
 
 header <- c("NOMBRE","<h3>Apellido</h3>","Color","<small style={color:blue !important}>edad</small>")
 tableize(d, header = header)
+
+tableize
 
 
 names(d)

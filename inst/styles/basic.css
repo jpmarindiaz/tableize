@@ -40,3 +40,8 @@ table td {
     border-color: #CCD4DD;
     background-color: #ffffff;
 }
+
+.tableRow{
+    /*max-height: 150px;*/
+    /*overflow: scroll;*/
+}

@@ -6,8 +6,9 @@
 \usage{
 tableize(d, fixedCols = NULL, rowLabelCol = NULL, fixedRows = NULL,
   header = NULL, theme = "basic", customCSS = NULL,
-  placeholderRow = NULL, placeholderCol = NULL, selectedRows = NULL,
-  selectedCols = NULL, width = NULL, height = NULL)
+  selectRowsText = NULL, selectColsText = NULL, placeholderRow = NULL,
+  placeholderCol = NULL, selectedRows = NULL, selectedCols = NULL,
+  width = NULL, height = NULL)
 }
 \description{
 <Add Description>

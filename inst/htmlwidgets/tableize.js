@@ -38,7 +38,7 @@ HTMLWidgets.widget({
 
         var style = x.style;
         var style = "<style> body{overflow:auto !important;}" + style + "</style>";
-        $(style).appendTo("body");
+        $(style).appendTo("#controls");
 
 
     var table = {
@@ -156,7 +156,7 @@ HTMLWidgets.widget({
             var keys = Object.keys(rowData);
             for (var i = 0; i < nProps; i++) {
                 if (keys[i] != "rowId") {
-                    row.append($("<td>" + rowData[keys[i]] + "</td>"));
+                    row.append($("<td><div class='tableRow'>" + rowData[keys[i]] + "</div></td>"));
                 }
             }
         }

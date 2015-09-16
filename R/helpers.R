@@ -16,7 +16,8 @@ prepareTable <- function(d, fixedCols,
 }
 
 
-getStyle <- function(theme = "basic", customCSS = ""){
+getStyle <- function(theme = NULL, customCSS = ""){
+  theme <- theme %||% "basic"
   if(theme == "blank")
     theme <- ""
   else{
@@ -24,7 +25,9 @@ getStyle <- function(theme = "basic", customCSS = ""){
     filePath <- file.path(system.file("styles",package="tableize"),theme)
     theme <- paste0(readLines(filePath),collapse="")
   }
-  paste0(theme,customCSS)
+  style <- paste(theme,customCSS,"\n")
+  #message(style)
+  style
 }
 
 

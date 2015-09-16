@@ -7,6 +7,7 @@
 #' @export
 tableize <- function(d, fixedCols = NULL, rowLabelCol =  NULL,fixedRows = NULL,
                      header = NULL, theme = "basic", customCSS = NULL,
+                     selectRowsText = NULL, selectColsText = NULL,
                      placeholderRow = NULL, placeholderCol = NULL,
                      selectedRows = NULL, selectedCols = NULL,
                      width = NULL, height = NULL) {
@@ -23,6 +24,7 @@ tableize <- function(d, fixedCols = NULL, rowLabelCol =  NULL,fixedRows = NULL,
     stop('header must have the same length as names(d)')
 
   controls <- getControls(d,fixedCols,rowLabelCol, fixedRows,
+                          selectRowsText = selectRowsText, selectColsText = selectColsText,
                           selectedRows = selectedRows, selectedCols = selectedCols)
   style <- getStyle(theme = theme, customCSS = customCSS)
 
