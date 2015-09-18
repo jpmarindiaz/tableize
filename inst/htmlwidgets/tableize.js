@@ -147,6 +147,7 @@ HTMLWidgets.widget({
             // Draw rows
             for (var i = 1; i < data.length; i++) {
                 drawRow(data[i]);
+                // console.log(data[i])
             }
         }
 
