@@ -8,6 +8,11 @@ library(tableize)
 
 
 
+d <- read.csv(system.file("data/comparacion-programas.csv",package = "tableize"), stringsAsFactors = FALSE)
+names(d) <- gsub("."," ", names(d), fixed = TRUE)
+tableize(d)
+
+
 d <- mtcars
 d[,1] <- row.names(mtcars)
 row.names(d) <- NULL
