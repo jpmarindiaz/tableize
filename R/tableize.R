@@ -14,6 +14,8 @@ tableize <- function(d, fixedCols = NULL, rowLabelCol =  NULL,fixedRows = NULL,
 
   fixedCols <- fixedCols %||% names(d)[1]
   rowLabelCol <- rowLabelCol %||% names(d)[1]
+  fixedCols <- fixedCols[fixedCols != rowLabelCol]
+  message(fixedCols)
   if(!rowLabelCol %in% names(d))
     stop('rowLabelCol must be in names(d)')
   if(!all(fixedRows %in% d[,rowLabelCol]))

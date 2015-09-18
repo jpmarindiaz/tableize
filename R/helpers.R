@@ -45,7 +45,7 @@ getControls <- function(d,fixedCols,rowLabelCol,fixedRows,
 
 
   optionColTpl <- '<option value="{{colName}}" {{selected}}>{{colName}}</option>'
-  filterCols <- names(d)[which(!names(d) %in% fixedCols)]
+  filterCols <- names(d)[which(!names(d) %in% c(rowLabelCol,fixedCols))]
   selectedCols <- selectedCols %||% filterCols
   lcol <- lapply(filterCols,function(col){
     selected <- ""

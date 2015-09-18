@@ -95,6 +95,7 @@ HTMLWidgets.widget({
 
         var fixedRows = ["table_header"].concat(table.fixedRows);
         var fixedCols = table.fixedCols;
+        console.log(fixedCols)
 
         // FILTER ROWS COLS
         function filterCols(data, selectedCols) {
